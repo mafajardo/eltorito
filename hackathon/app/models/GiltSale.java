@@ -1,7 +1,7 @@
 package models;
 
 import java.util.List;
-import models.gilt.GiltProduct;
+import models.GiltProduct;
 
 public class GiltSale {
 
