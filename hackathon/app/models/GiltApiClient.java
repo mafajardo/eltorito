@@ -64,20 +64,7 @@ public class GiltApiClient {
 		
 		return product;
 	}
-	
-	public Product getProductDetails(String productId) {
-		Product product = null;
-		
-		try {
-			String json = request.get(Endpoint.PRODUCT_DETAIL_URI.replace("{product_id}", productId));
-			product = mapper.readValue(json, Product.class);
-		} catch (Exception e) {
-		    throw new RuntimeException("Error fetching products from Gilt", e);
-		}
-		
-		return product;
-	}
-	
+
 	public Weather.TEMP getWeather(Weather.CITY cityCode){
 		String endpoint = "";
 		

@@ -2,6 +2,9 @@ package models;
 
 public class Endpoint {
 
+	/*
+	 * GILT ENDPOINTS
+	 */
 	public static final String BASE_URI = "https://api.gilt.com/v1/";
 	public static final String API_KEY = "?apikey=4248d2d1ef9dda8b7d2f9f7c0ddc35cb";
 
@@ -15,4 +18,11 @@ public class Endpoint {
     public static final String WEATHER_LONDON = "http://api.wunderground.com/api/b9a3c6cf46317a72/conditions/q/UK/London.json";
     public static final String WEATHER_HAWAII = "http://api.wunderground.com/api/b9a3c6cf46317a72/conditions/q/HI/Honolulu.json";
     public static final String WEATHER_NYC = "http://api.wunderground.com/api/b9a3c6cf46317a72/conditions/q/NY/New_York.json";
+
+    /*
+     * HEARST ENDPOINTS
+     */
+    public static final String ITEM_URI = "http://hearst.api.mashery.com/ArticleImage/search?" +
+    		"_pretty=1&keywords={keywords}&start=0&limit=100&sort=name%2Casc&total=0&api_key=du6rpmx5ep3w59qx4nwfm65t&shape=full";
+
 }
