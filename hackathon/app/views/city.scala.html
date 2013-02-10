@@ -1,4 +1,4 @@
-@(temp: String, weather: String, weatherImg: String, cityCode : String, hearstItems:List[HearstItem])
+@(cityName: String, temp: String, weather: String, weatherImg: String, cityCode : String, hearstItems:List[HearstItem])
 
 @import controllers._
 @import models._
@@ -6,7 +6,7 @@
 
 @main("Your City Experience") {
 
-
+@cityName
 <div class="row">
   <div class="span14">
       <div class="span6">

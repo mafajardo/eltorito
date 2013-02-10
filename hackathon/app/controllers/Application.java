@@ -164,8 +164,16 @@ public class Application extends Controller {
 		else 
 			weatherImg = "SUN";
 		
+		String cityName = "";
 		
-		return ok(city.render(weather.getCurrent_observation().getTemp_f(), weather.getCurrent_observation().getWeather(), weatherImg, cityCode, items));
+		if (cityCode.equals("NY"))
+			cityName = "New York";
+		else if (cityCode.equals("LO"))
+			cityName = "London";
+		else
+			cityName = "Hawaii";
+		
+		return ok(city.render(cityName, weather.getCurrent_observation().getTemp_f(), weather.getCurrent_observation().getWeather(), weatherImg, cityCode, items));
 	}
 		
 	public static void main(String args[]) {
