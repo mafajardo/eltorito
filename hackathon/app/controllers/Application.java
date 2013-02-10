@@ -28,7 +28,7 @@ public class Application extends Controller {
 	public static Result index() {
 		
 		//Cache.set("products", "dd");
-		getProductsFromCache();
+		//getProductsFromCache();
 		
 		return ok(index.render(""));
 	}
@@ -75,11 +75,46 @@ public class Application extends Controller {
 	        System.out.print("########## ERROR#");
 	    }
 	}
+	
+	public static List<HearstItem> loadHI() {
+		List<HearstItem> products = null;
+        try {
+            FileInputStream fis = new FileInputStream(new File("HearstItemNY"));
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            products = (List<HearstItem>)ois.readObject();
+            
+            ois.close();
+            fis.close();
+        } catch (IOException e) {
+        	System.out.print("########## ERROR#");
+        } catch (ClassNotFoundException e) {
+        	System.out.print("########## ERROR#");
+        }
+        return products;
+    }
+	
+	public static void saveHI(List<HearstItem> products){
+		try {
+	        FileOutputStream fos = new FileOutputStream(new File("HearstItemNY"));
+	        ObjectOutputStream oos = new ObjectOutputStream(fos);
+	        oos.writeObject(products);
+	        oos.close();
+	        fos.close();
+	    } catch (IOException ex) {
+	        System.out.print("########## ERROR#");
+	    }
+	}
 
 	public static Result city(String cityCode) {
 		Weather weather = client.getWeather(Weather.CITY.valueOf(cityCode));
 		
-		List<HearstItem> items = hearstClient.getItems(Weather.CITY.valueOf(cityCode), weather.getTempEnum());
+		List<HearstItem> items = null;
+		
+		items = hearstClient.getItems(Weather.CITY.valueOf("NY"), weather.getTempEnum());
+		
+		saveHI(items);
+		
+		//items = loadHI();
 		
 		List<Product> products = null;
 		
@@ -93,8 +128,10 @@ public class Application extends Controller {
 		for (HearstItem hi : items){
 			
 			for (String hKeyword : hi.getKeywords().split(" ")){
+				System.out.println("hkeywords: " + hKeyword);
 				if (!hKeyword.equals("") && !hKeyword.equals(" ")){
 					for (Product p : products){
+						System.out.println("pname: " + p.getName());
 						if (p.getName().contains(hKeyword)){
 							GiltProduct gp = new GiltProduct();
 							gp.buyUrl = p.getUrl();
@@ -104,6 +141,11 @@ public class Application extends Controller {
 					}
 				}
 			}
+		}
+		
+		for (HearstItem hi : items){
+			for (GiltProduct gp : hi.giltProducts)
+				System.out.println("GP: " + gp.imageUrl);
 		}
 		
 		Long et = System.currentTimeMillis();

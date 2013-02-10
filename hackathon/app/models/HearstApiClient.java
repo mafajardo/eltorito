@@ -73,7 +73,7 @@ public class HearstApiClient {
 		List<HearstItem> itemsToAdd = new ArrayList<HearstItem>();
 		
 		for (String keyword : keywords) {
-			if (itemsToAdd.size() < 10){
+			//if (itemsToAdd.size() < 10){
 				String uri = Endpoint.ITEM_URI.replace("{keywords}", city + keyword+"%25");
 				
 				Long st = System.currentTimeMillis();
@@ -88,7 +88,7 @@ public class HearstApiClient {
 					
 					for (HearstItem i : items){
 						try {
-							if (itemsPerKeyword++ < 1 && !itemIncluded(itemsToAdd, i.getDefaultUrl()) && request.isCorrectImage(i.getDefaultUrl())){
+							if (itemsPerKeyword++ < 100 && !itemIncluded(itemsToAdd, i.getDefaultUrl()) && request.isCorrectImage(i.getDefaultUrl())){
 								
 								//Move from 'man, floral pants, castle' to 'floral pants'
 								String[] hearstKeywords = i.getKeywords().split(",");
@@ -108,7 +108,7 @@ public class HearstApiClient {
 					System.out.println("Loaded images '"+ keyword +"' time: " + ((et - st)/1000/60) + " mins" + ((et - st)/1000) + "secs");
 					
 				}
-			}
+			//}
 		}
 		
 		return itemsToAdd;
