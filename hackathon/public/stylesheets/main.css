@@ -58,3 +58,19 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
+
+.weather-items {
+  margin-top: 15px;
+  margin-right: -10px;
+  float: left;
+}
+
+.weather-img img{
+  width: 70px;
+  float: right;
+  margin-top: 13px;
+}
+
+.modal {
+  width: 650px;
+}
