@@ -4,22 +4,23 @@
 @import models._
 @import helper._
 
-@main("Hearst Hackathon 2013") {
-
-<section class="selectors">
-
-  <div class="content">
-    <a href="/city/NY"><img src="@routes.Assets.at("images/NY.png")"/></a>
-  </div>
-
-  <div class="content">
-    <a href="/city/LO"><img src="@routes.Assets.at("images/LO.png")"/></a>
-  </div>
-
-  <div class="content">
-    <a href="/city/HI"><img src="@routes.Assets.at("images/HI.png")"/></a>
-  </div>
+@main("SELECT A CITY") {
   
-<section>
-
+  <div class="row">
+    <div class="span4">
+         <a href="/city/NY"><img src="@routes.Assets.at("images/NY.png")"/></a>
+         <br><br>
+         <div class="city">New York</div>
+    </div>
+    <div class="span4">
+          <a href="/city/LO"><img src="@routes.Assets.at("images/LO.png")"/></a>
+          <br><br>
+          <div class="city">London</div>
+      </div>
+      <div class="span4">
+          <a href="/city/HI"><img src="@routes.Assets.at("images/HI.png")"/></a>
+          <br><br>
+          <div class="city">Hawaii</div>
+      </div>
+  </div>
 }

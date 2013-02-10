@@ -1,4 +1,30 @@
-body {
+.navbar .brand {
+  font-size: 25px;
+}
+
+.page-header h1 {
+  font-family: sathu;
+  font-size: 36px;
+  text-align: center;
+}
+
+.motto {
+  font-size: 20px;
+  display: block;
+  float: right;
+  margin: 10px 50px 0 0;
+}
+
+.city {
+  text-align: center;
+  font-size: 16px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid black;
+}
+
+/*body {
   background-color: rgb(248, 248, 248);
 }
 .main {
@@ -99,4 +125,4 @@ a:hover {
   width: 204px;
   background-color: rgba(22, 22, 22, 0.65);
   position: absolute;
-}
+}*/

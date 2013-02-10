@@ -4,46 +4,52 @@
 @import models._
 @import helper._
 
-@main("Hearst Hackathon 2013") {
-<section class="main">
-  <section class="city-content">
-    <div class="content">
-      <img src="@routes.Assets.at("images/"+cityCode+".png")"/>
-    </div>
+@main("Your City Experience") {
 
-  <div class="content">
+      
+ <row>
+  <span4>
+    <img src="@routes.Assets.at("images/"+cityCode+".png")"/>
+  </span4>
+  <span4>
     <img src="@routes.Assets.at("images/"+weatherImg+".png")"/>
-  </div>
-
-    <div class="content">
-      Temperature: @temp oF
+    Temperature: @temp oF
     Current weather: @weather 
-    </div>
-  </section>
-  
-  <section class="articles">
-    <h2>Catch up on Articles about New York</h2>
-    <div class="article-list">
+  </span4>
+</row>
 
-    @for(item <- hearstItems) {
-      <div class="content">
-        <a href=@item.getDefaultUrl()>
-          <p>Read something</p>
-          <div class="photo">
-            <img src=@item.getDefaultUrl() alt="some article">
-            
-            @for(product <- item.giltProducts) {
-            	<div class="content">
-            		<a href="@product.buyUrl"><img src="@product.imageUrl"/></a>
-            	<div>
-            }
-          </div>
-        </a>
-      </div>
-    }
-  
-    </div>
-  </section>
-</section>
+<row>
+  <span14>
+    <h2>Catch up on Articles about @cityCode</h2>
+
+      <ul class="thumbnails">
+      @for(item <- hearstItems) {
+            <li class="span4">
+              <!-- Button to trigger modal -->
+              <a href="#myModal" role="button" class="thumbnail" data-toggle="modal">
+                <img src=@item.getDefaultUrl() data-src=:"holder.js/260x180" style="width: 260px; height: 300px;" alt=""/>
+              </a>
+
+              <!-- Modal -->
+              <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h3 id="myModalLabel">Products</h3>
+                </div>
+                <div class="modal-body">
+                  <ul class="thumbnails">
+                    @for(product <- item.giltProducts) {
+                        <span8>
+                          <a href="@product.buyUrl"><img src="@product.imageUrl"/></a>
+                        </span8>
+                      }
+                  </ul>
+                </div>
+              </div>
+            </li>
+      }
+      </ul>
+  <span14>
+  </row>
 }
 
