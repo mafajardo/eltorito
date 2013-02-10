@@ -76,12 +76,13 @@ public class Application extends Controller {
 	    }
 	}
 	
-	public static List<HearstItem> loadHI() {
-		List<HearstItem> products = null;
+	public static List<HearstItem> loadHI(String code) {
+		List<HearstItem> items = null;
         try {
-            FileInputStream fis = new FileInputStream(new File("HearstItemNY"));
+        	File f = new File("HearstItem" + code);
+        	FileInputStream fis = new FileInputStream(f);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            products = (List<HearstItem>)ois.readObject();
+            items = (List<HearstItem>)ois.readObject();
             
             ois.close();
             fis.close();
@@ -90,12 +91,12 @@ public class Application extends Controller {
         } catch (ClassNotFoundException e) {
         	System.out.print("########## ERROR#");
         }
-        return products;
+        return items;
     }
 	
-	public static void saveHI(List<HearstItem> products){
+	public static void saveHI(List<HearstItem> products, String code){
 		try {
-	        FileOutputStream fos = new FileOutputStream(new File("HearstItemNY"));
+	        FileOutputStream fos = new FileOutputStream(new File("HearstItem" + code));
 	        ObjectOutputStream oos = new ObjectOutputStream(fos);
 	        oos.writeObject(products);
 	        oos.close();
@@ -110,11 +111,10 @@ public class Application extends Controller {
 		
 		List<HearstItem> items = null;
 		
-		items = hearstClient.getItems(Weather.CITY.valueOf("NY"), weather.getTempEnum());
+		//items = hearstClient.getItems(Weather.CITY.valueOf(cityCode), weather.getTempEnum());
+		//saveHI(items, cityCode);
 		
-		saveHI(items);
-		
-		//items = loadHI();
+		items = loadHI(cityCode);
 		
 		List<Product> products = null;
 		
@@ -170,7 +170,7 @@ public class Application extends Controller {
 		
 	public static void main(String args[]) {
 		//Cache.set("products", "d");
-		getProductsFromCache();
-		Result s = city("NY");
+		//getProductsFromCache();
+		Result s = city("HI");
 	}
 }

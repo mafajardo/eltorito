@@ -1,5 +1,6 @@
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,9 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class HearstItem {
+public class HearstItem  implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@JsonProperty("id")
 	@Nonnull
