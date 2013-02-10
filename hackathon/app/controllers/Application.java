@@ -1,7 +1,12 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
-import java.util.Map;
 
 import models.GiltApiClient;
 import models.GiltProduct;
@@ -9,7 +14,6 @@ import models.HearstApiClient;
 import models.HearstItem;
 import models.Product;
 import models.Weather;
-import play.cache.Cache;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.city;
@@ -30,8 +34,8 @@ public class Application extends Controller {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private static Map<String, Product> getProductsFromCache(){
-		Map<String, Product> products = null; 
+	private static List<Product> getProductsFromCache(){
+		List<Product> products = null; 
 		
 		//products = (Map<String, Product>) Cache.get("products");
 		
@@ -42,31 +46,64 @@ public class Application extends Controller {
 		
 		return products;
 	}
+	
+	public static List<Product> load() {
+		List<Product> products = null;
+        try {
+            FileInputStream fis = new FileInputStream(new File("Products"));
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            products = (List<Product>)ois.readObject();
+            
+            ois.close();
+            fis.close();
+        } catch (IOException e) {
+        	System.out.print("########## ERROR#");
+        } catch (ClassNotFoundException e) {
+        	System.out.print("########## ERROR#");
+        }
+        return products;
+    }
+	
+	public static void save(List<Product> products){
+		try {
+	        FileOutputStream fos = new FileOutputStream(new File("Products"));
+	        ObjectOutputStream oos = new ObjectOutputStream(fos);
+	        oos.writeObject(products);
+	        oos.close();
+	        fos.close();
+	    } catch (IOException ex) {
+	        System.out.print("########## ERROR#");
+	    }
+	}
 
 	public static Result city(String cityCode) {
 		Weather weather = client.getWeather(Weather.CITY.valueOf(cityCode));
 		
 		List<HearstItem> items = hearstClient.getItems(Weather.CITY.valueOf(cityCode), weather.getTempEnum());
 		
-		Map<String, Product> products = getProductsFromCache();
+		List<Product> products = null;
+		
+		//products = getProductsFromCache();
+		//save(products);
+		
+		products = load();
 		
 		Long st = System.currentTimeMillis();
 		
 		for (HearstItem hi : items){
 			
-			for (String k : hi.getKeywords().split(" ")){
-				for (String s : products.keySet()){
-					Product p = products.get(s);
-					
-					if (p.getName().contains(k)){
-						GiltProduct gp = new GiltProduct();
-						gp.buyUrl = p.getUrl();
-						gp.imageUrl = p.getImageUrls().get("91x121").get(0).get("url").toString();
-						hi.giltProducts.add(gp);
+			for (String hKeyword : hi.getKeywords().split(" ")){
+				if (!hKeyword.equals("") && !hKeyword.equals(" ")){
+					for (Product p : products){
+						if (p.getName().contains(hKeyword)){
+							GiltProduct gp = new GiltProduct();
+							gp.buyUrl = p.getUrl();
+							gp.imageUrl = p.getImageUrls().get("300x400").get(0).get("url").toString();
+							hi.giltProducts.add(gp);
+						}
 					}
 				}
 			}
-			
 		}
 		
 		Long et = System.currentTimeMillis();

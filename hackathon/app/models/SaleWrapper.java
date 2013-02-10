@@ -1,5 +1,6 @@
 package models;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -9,9 +10,11 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class SaleWrapper {
+public class SaleWrapper implements Serializable {
 
-    @JsonProperty("sales")
+	private static final long serialVersionUID = 1L;
+
+	@JsonProperty("sales")
     @NotNull
     private final List<Sale> sales;
 

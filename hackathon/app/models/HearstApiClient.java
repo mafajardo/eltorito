@@ -17,9 +17,9 @@ public class HearstApiClient {
 	private HttpRequest request = new HttpRequest();
 	
 	private List<String> very_cold = Arrays.asList("pants","shirt","sweater","puffer","parka","dress","blanket","hoodie","hat,","gloves","pump","heel","boots","scarf","jacket","shoe","denim","leather","belt","sock");
-	private List<String> cold = Arrays.asList("pants","shirt","sweater","parka","dress","hoodie","hat,","gloves","pump","heel","boots","scarf","flats","jacket","shoe","denim","leather","belt","sock");
-	private List<String> warm = Arrays.asList("pants","shirt","dress","hat,","pump","heel","flats","shoe","denim","shorts","belt","sock");
-	private List<String> hot = Arrays.asList("pants","shirt","dress","pump","heel","flats","shoe","denim","shorts","sandal","belt");
+	private List<String> cold = Arrays.asList("dress","hoodie","hat,","gloves","pump","heel","boots","scarf","flats","jacket","shoe","denim","leather","belt","sock","pants","shirt","sweater","parka");
+	private List<String> warm = Arrays.asList("shorts", "flats", "hat,","pump","heel","shoe","denim","belt","sock", "pants","shirt","dress");
+	private List<String> hot = Arrays.asList("heel","flats","shoe","denim","pants","shirt","dress","pump","shorts","sandal","belt");
 	
 	private List<HearstItem> getItemsList(String uri) {
 		HearstItemWrapper items = null;
@@ -88,7 +88,7 @@ public class HearstApiClient {
 					
 					for (HearstItem i : items){
 						try {
-							if (itemsPerKeyword++ < 5 && !itemIncluded(itemsToAdd, i.getDefaultUrl()) && request.isCorrectImage(i.getDefaultUrl())){
+							if (itemsPerKeyword++ < 1 && !itemIncluded(itemsToAdd, i.getDefaultUrl()) && request.isCorrectImage(i.getDefaultUrl())){
 								
 								//Move from 'man, floral pants, castle' to 'floral pants'
 								String[] hearstKeywords = i.getKeywords().split(",");

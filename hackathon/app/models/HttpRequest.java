@@ -39,7 +39,8 @@ public class HttpRequest {
     	HttpResponse response = client.execute(request);
 
     	//If response code was not 200 (broken image) or content that we got back was not an image 
-    	if (response.getStatusLine().getStatusCode() != 200 || !response.getHeaders("Content-Type")[0].toString().contains("image")) {
+    	if (response.getStatusLine().getStatusCode() != 200 || !response.getHeaders("Content-Type")[0].toString().contains("image")
+    			|| uri.contains(".tiff")) {
 			return false;
 		}
     	
