@@ -64,7 +64,7 @@ public class HearstApiClient {
 		case LO:
 			city = "%25london%25";
 			break;
-		case HW:
+		case HI:
 			city = "%25hawaii%25";
 			break;
 		default:

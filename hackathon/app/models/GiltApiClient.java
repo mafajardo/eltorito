@@ -75,7 +75,7 @@ public class GiltApiClient {
 	public Weather.TEMP getWeather(Weather.CITY cityCode){
 		String endpoint = "";
 		
-		if (cityCode.equals(Weather.CITY.HW))
+		if (cityCode.equals(Weather.CITY.HI))
 			endpoint = Endpoint.WEATHER_HAWAII;
 		else if (cityCode.equals(Weather.CITY.LO))
 			endpoint = Endpoint.WEATHER_LONDON;

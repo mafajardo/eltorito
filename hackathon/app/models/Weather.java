@@ -9,7 +9,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Weather {
 	
-	public enum CITY{NY,LO,HW};
+	public enum CITY{NY,LO,HI};
 	public enum TEMP{V_COLD, COLD, WARM, HOT};
 	
 	@JsonProperty("current_observation")

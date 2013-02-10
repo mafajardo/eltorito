@@ -1,0 +1,39 @@
+@(temp: String, cityCode : String, hearstItems:Map[String, List[HearstItem]])
+
+@import controllers._
+@import models._
+@import helper._
+
+@main("Hearst Hackathon 2013") {
+  <div class="content">
+    <a href="/city/NY"><img src="@routes.Assets.at("images/"+cityCode+".png")"/></a>
+  </div>
+  <br />
+  <div class="content">
+    Temperature: @temp
+  </div>
+  <br />
+  <div class="content">
+    <section class="articles">
+  <h2>Catch up on Articles about New York</h2>
+  <div class="article-list">
+
+    @for((key,value) <- hearstItems) {
+      @for(item <- value) {
+        <div class="content">
+          <a href=@item.getDefaultUrl()>
+            <div class="photo">
+              <img src=@item.getDefaultUrl() alt="some article">
+            </div>
+            <p>Read something</p>
+          </a>
+        </div>
+      }
+    }
+
+	</div>
+</section>
+  </div>
+
+}
+

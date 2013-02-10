@@ -1,4 +1,4 @@
-@()
+@(temp:String)
 
 @import controllers._
 @import models._
@@ -8,22 +8,16 @@
 
 <section class="selectors">
 
-
   <div class="content">
-
-    @helper.form(action = routes.Application.submit, 'id -> "myForm") {
-       <a href="@routes.Application.submit"><img src="@routes.Assets.at("images/new_york.png")"/></a>
-       <input type="hidden" name="name" value="new york">
-    }
-    
+    <a href="/city/NY"><img src="@routes.Assets.at("images/NY.png")"/></a>
   </div>
 
   <div class="content">
-    <a href="/city/1"><img src="@routes.Assets.at("images/london.png")"/></a>
+    <a href="/city/LO"><img src="@routes.Assets.at("images/LO.png")"/></a>
   </div>
 
   <div class="content">
-    <a href="@routes.Application.submit"><img src="@routes.Assets.at("images/hawaii.png")"/></a>
+    <a href="/city/HI"><img src="@routes.Assets.at("images/HI.png")"/></a>
   </div>
 
 <section>
