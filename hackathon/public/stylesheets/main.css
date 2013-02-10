@@ -62,20 +62,23 @@ a:hover {
   border: 1px solid black;
   margin: 0 10px;
 }
-
+.city-content{
+  border-bottom: 1px dotted red;
+  display:inline;
+  min-height:300px;
+}
 .articles, .fashion {
   display: block;
 }
 .articles {
-  height:400px;
+  height:320px;
   border-bottom: 1px dotted red;
 }
 .articles .content {
-  height: 322px;
 }
 .articles .photo {
   width: 152px;
-  height: 228px;
+  height: 194px;
 }
 
 .fashion {

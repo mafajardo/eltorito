@@ -5,35 +5,35 @@
 @import helper._
 
 @main("Hearst Hackathon 2013") {
-  <div class="content">
-    <a href="/city/NY"><img src="@routes.Assets.at("images/"+cityCode+".png")"/></a>
-  </div>
-  <br />
-  <div class="content">
-    Temperature: @temp
-  </div>
-  <br />
-  <div class="content">
-    <section class="articles">
-  <h2>Catch up on Articles about New York</h2>
-  <div class="article-list">
+<section class="main">
+  <section class="city-content">
+    <div class="content">
+      <a href="/city/NY"><img src="@routes.Assets.at("images/"+cityCode+".png")"/></a>
+    </div>
 
-    @for((key,value) <- hearstItems) {
-      @for(item <- value) {
-        <div class="content">
-          <a href=@item.getDefaultUrl()>
-            <div class="photo">
-              <img src=@item.getDefaultUrl() alt="some article">
-            </div>
-            <p>Read something</p>
-          </a>
-        </div>
+    <div class="content">
+      Temperature: @temp
+    </div>
+  </section>
+  
+  <section class="articles">
+    <h2>Catch up on Articles about New York</h2>
+    <div class="article-list">
+
+      @for((key,value) <- hearstItems) {
+        @for(item <- value) {
+          <div class="content">
+            <a href=@item.getDefaultUrl()>
+              <p>Read something</p>
+              <div class="photo">
+                <img src=@item.getDefaultUrl() alt="some article">
+              </div>
+            </a>
+          </div>
+        }
       }
-    }
-
-	</div>
+    </div>
+  </section>
 </section>
-  </div>
-
 }
 
