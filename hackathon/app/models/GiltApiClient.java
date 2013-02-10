@@ -29,30 +29,22 @@ public class GiltApiClient {
 		List<Sale> sales = getActiveSales();
 		
 		System.out.println("Sales Size: " + sales.size());
-		
 		long ps = 0;
-		
 		for(Sale sale : sales) {
 			if (sale != null && sale.getProducts() != null) {
 				ps += sale.getProducts().size();
 			}
 		}
-		
 		System.out.println("Products Size: " + ps);
-		
-		ps = 0;
 		
 		
 		for(Sale sale : sales) {
 			if (sale != null && sale.getProducts() != null) {
-				System.out.println("1 " + sale);
 				for(String productUri : sale.getProducts()) {
-					System.out.println("2");
 					Product product = getProduct(productUri + Endpoint.API_KEY);
 					products.put(product.getId() + "", product);
 				}
 			}
-			System.out.println("So far: " + ps++);
 			break;
 		}
 		
