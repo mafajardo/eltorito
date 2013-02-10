@@ -11,4 +11,8 @@ public class Endpoint {
 
     public static final String PRODUCT_DETAIL_URI = BASE_URI + "products/{product_id}/detail.json" + API_KEY;
     public static final String PRODUCT_CATEGORIES_URI = BASE_URI + "/products/categories.json" + API_KEY;
+    
+    public static final String WEATHER_LONDON = "http://api.wunderground.com/api/b9a3c6cf46317a72/conditions/q/UK/London.json";
+    public static final String WEATHER_HAWAII = "http://api.wunderground.com/api/b9a3c6cf46317a72/conditions/q/HI/Honolulu.json";
+    public static final String WEATHER_NYC = "http://api.wunderground.com/api/b9a3c6cf46317a72/conditions/q/NY/New_York.json";
 }

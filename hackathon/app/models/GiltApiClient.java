@@ -76,4 +76,25 @@ public class GiltApiClient {
 		
 		return product;
 	}
+	
+	public Weather.TEMP getWeather(Weather.CITY cityCode){
+		String endpoint = "";
+		
+		if (cityCode.equals(Weather.CITY.HW))
+			endpoint = Endpoint.WEATHER_HAWAII;
+		else if (cityCode.equals(Weather.CITY.LO))
+			endpoint = Endpoint.WEATHER_LONDON;
+		else
+			endpoint = Endpoint.WEATHER_NYC;
+		
+		try {
+			String json = request.get(endpoint);
+			Weather weather = mapper.readValue(json, Weather.class);
+			
+			return weather.getTempEnum();
+		} catch (Exception e) {
+		    System.out.println("Error fetching active sales from Gilt" + e);
+		    return Weather.TEMP.COLD;
+		}
+	}
 }
