@@ -1,5 +1,7 @@
 package models;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -75,8 +77,19 @@ public class HearstApiClient {
 		for (String keyword : keywords) {
 			String uri = Endpoint.ITEM_URI.replace("{keywords}", city + keyword+"%25");
 			List<HearstItem> items = getItemsList(uri);
+			
 			if (items != null) {
-				itemsMap.put(keyword, items);
+				List<HearstItem> itemsToAdd = new ArrayList<HearstItem>();
+				for (HearstItem i : items){
+					try {
+						if (request.isCorrectImage(i.getDefaultUrl()))
+							itemsToAdd.add(i);
+					} catch (Exception e) {
+					    System.out.println("Error checking image " + e);
+					}
+				}
+				
+				itemsMap.put(keyword, itemsToAdd);
 			}
 		}
 		

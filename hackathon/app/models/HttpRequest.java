@@ -33,17 +33,17 @@ public class HttpRequest {
     	return source.toString();
     }
     
-    public boolean isImageBroken(String uri) throws IOException {
+    public boolean isCorrectImage(String uri) throws IOException {
     	HttpClient client = new DefaultHttpClient();
     	HttpGet request = new HttpGet(uri);
     	HttpResponse response = client.execute(request);
 
     	//If response code was not 200 (broken image) or content that we got back was not an image 
-    	if (response.getStatusLine().getStatusCode() != 200 || response.getHeaders("Content-Type")[0].toString().contains("image")) {
-			return true;
+    	if (response.getStatusLine().getStatusCode() != 200 || !response.getHeaders("Content-Type")[0].toString().contains("image")) {
+			return false;
 		}
     	
-    	return false;
+    	return true;
     }
 
 }
