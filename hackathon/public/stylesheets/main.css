@@ -1,24 +1,52 @@
 body {
+  background-color: rgb(248, 248, 248);
+}
+.main {
   max-width: 970px;
   margin: 0 auto;
 }
 
 section {
-  border-bottom: 1px solid black;
   padding: 10px 0;
+}
+
+.top {
+  background: black;
+  padding: 10px;
+  height: 40px;
 }
 
 h1 {
   font-family: 'InaiMathi', 'Arial', 'serif';
+  color: white;
+  float: left;
 }
 h2 {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 24px;
-  font-style: italic;
+  font: 1.35em/36px Georgia, serif;
+  display: block;
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  height: 36px;
+}
+.navbar-inner {
+  background-image: -webkit-linear-gradient(top, #555,black);
+}
+.navbar .brand {
+  padding: 15px 20px 0px;
+  font-size: 30px;
+  color: rgb(241, 241, 241);
+  text-shadow: 0;
+}
+
+.navbar h2 {
+  color: rgb(241, 241, 241);
+  float:right;
 }
 h3 {
+  font-family: "open-sans","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-size: 20px;
-  font-style: italic;
   line-height: 0.6; 
 }
 
@@ -32,12 +60,15 @@ a:hover {
 .content {
   float: left;
   border: 1px solid black;
-  background: black;
   margin: 0 10px;
 }
 
+.articles, .fashion {
+  display: block;
+}
 .articles {
   height:400px;
+  border-bottom: 1px dotted red;
 }
 .articles .content {
   height: 322px;
@@ -48,27 +79,21 @@ a:hover {
 }
 
 .fashion {
-  height: 500px;
-}
-.fashion .content {
-  height: 410px;
+  height: 380px;
+  border-bottom: 1px dotted red;
 }
 .fashion .photo {
   width:220px;
   height:294px;
 }
 .fashion .info {
+  display:none;
+}
+.fashion .content:hover .info {
+  display:block;
   padding: 0 8px;
+  min-height: 100px;
+  width: 204px;
+  background-color: rgba(22, 22, 22, 0.65);
+  position: absolute;
 }
-
-.travel {
-  height:400px;
-}
-.travel .content {
-  margin: 0 1px;
-}
-.travel .photo {
-  width:315px;
-  height:176px;
-}
-
