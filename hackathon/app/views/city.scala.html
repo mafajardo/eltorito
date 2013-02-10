@@ -50,13 +50,13 @@
               <div id="@item.getId()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-                  <h3 id="myModalLabel">Featured Gilt Products</h3>
+                  <h3 id="myModalLabel">Products</h3>
                 </div>
                 <div class="modal-body">
                   <ul class="thumbnails">
                   @if(item.giltProducts.size>0) {
                     @for(product <- item.giltProducts) {
-                        <div class="span4">
+                        <div class="span8">
                           <a href="@product.buyUrl"><img src="@product.imageUrl"/></a>
                         </div>
                       }
