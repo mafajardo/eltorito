@@ -1,6 +1,5 @@
 package models;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,15 +37,23 @@ public class GiltApiClient {
 		}
 		System.out.println("Products Size: " + ps);
 		
+		int MAX = 3;
 		
+		done:
 		for(Sale sale : sales) {
 			if (sale != null && sale.getProducts() != null) {
+				
 				for(String productUri : sale.getProducts()) {
 					Product product = getProduct(productUri + Endpoint.API_KEY);
 					products.put(product.getId() + "", product);
+					
+					if (products.size() == MAX) {
+						break done;
+					}
 				}
+				
+				products = new HashMap<String, Product>();
 			}
-			break;
 		}
 		
 		return products;

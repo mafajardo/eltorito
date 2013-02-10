@@ -1,6 +1,5 @@
 package models;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,7 +18,8 @@ public class HearstApiClient {
 	private ObjectMapper mapper = new ObjectMapper();
 	private HttpRequest request = new HttpRequest();
 	
-	private List<String> freezing = Arrays.asList("bag","pants","shirt","sweater","puffer","parka","dress","blanket","hoodie","hat,","gloves","pump","heel","boots","scarf","jacket","shoe","denim","leather","belt","sock");
+//	private List<String> very_cold = Arrays.asList("bag","pants","shirt","sweater","puffer","parka","dress","blanket","hoodie","hat,","gloves","pump","heel","boots","scarf","jacket","shoe","denim","leather","belt","sock");
+	private List<String> very_cold = Arrays.asList("bag");
 	private List<String> cold = Arrays.asList("bag","pants","shirt","sweater","parka","dress","hoodie","hat,","gloves","pump","heel","boots","scarf","flats","jacket","shoe","denim","leather","belt","sock");
 	private List<String> warm = Arrays.asList("bag","pants","shirt","dress","hat,","pump","heel","flats","shoe","denim","shorts","belt","sock");
 	private List<String> hot = Arrays.asList("bag","pants","shirt","dress","pump","heel","flats","shoe","denim","shorts","sandal","belt");
@@ -46,7 +46,7 @@ public class HearstApiClient {
 			keywords = cold;
 			break;
 		case V_COLD:
-			keywords = freezing;
+			keywords = very_cold;
 			break;
 		case HOT:
 			keywords = hot;
@@ -82,7 +82,7 @@ public class HearstApiClient {
 				List<HearstItem> itemsToAdd = new ArrayList<HearstItem>();
 				for (HearstItem i : items){
 					try {
-						if (request.isCorrectImage(i.getDefaultUrl()))
+						if (itemsToAdd.size() < 3 && request.isCorrectImage(i.getDefaultUrl()))
 							itemsToAdd.add(i);
 					} catch (Exception e) {
 					    System.out.println("Error checking image " + e);

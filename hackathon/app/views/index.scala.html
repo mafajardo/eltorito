@@ -1,85 +1,32 @@
-@(products: Map[String, Product])
+@()
 
 @import controllers._
 @import models._
+@import helper._
 
 @main("Hearst Hackathon 2013") {
-<div class="main">
 
 <section class="selectors">
-  <select id="city-selector" class="btn btn-danger">
-    <option value="">Where are you dressing for?</option>
-    <option value="new-york">New York</option>
-  </select>
-<section>
 
-<section class="articles">
-  <h2>Catch up on Articles about New York</h2>
-  <div class="article-list">
-    <div class="content">
-      <a href="http://www.google.com">
-        <div class="photo">
-          <img src="http://www.elle.com/cm/elle/images/NB/elle-01-tl-180-designers-xln-th2.jpg" alt="some article">
-        </div>
-        <p>Read something</p>
-      </a>
-    </div>
-    <div class="content">
-      <a>
-        <div class="photo">
-          <img src="http://www.elle.com/cm/elle/images/NB/elle-01-tl-180-designers-xln-th2.jpg" alt="some article">
-        </div>
-        <p>Read something</p>
-      </a>
-    </div>
-    <div class="content">
-      <a>
-        <div class="photo">
-          <img src="http://www.elle.com/cm/elle/images/NB/elle-01-tl-180-designers-xln-th2.jpg" alt="some article">
-        </div>
-        <p>Read something</p>
-      </a>
-    </div>
-    <div class="content">
-      <a>
-        <div class="photo">
-          <img src="http://www.elle.com/cm/elle/images/NB/elle-01-tl-180-designers-xln-th2.jpg" alt="some article">
-        </div>
-        <p>Read something</p>
-      </a>
-    </div>
-	</div>
-</section>
 
-<section class="fashion">
-  <h2>Shop New York fashion</h2>
-  <div class="products">
-    <article class="content">
-      <a href="/link">
-        <div class="info">
-          <h3 class="brand-name">brand.name</h3>
-          <h3 class="product-name">product.name</h3>
-          <h3 class="gilt-price">$ gilt price</h3>
-          <h3 class="msrp-price">$ msrp price</h3>
-        </div>
-        <div class="photo">
-          <img src="http://cdn1.giltcdn.com/images/share/uploads/0000/0001/5642/156427646/220x294.jpg" alt="Buy something">
-        </div>
-      </a>
-    </article>
+  <div class="content">
+
+    @helper.form(action = routes.Application.submit, 'id -> "myForm") {
+       <a href="@routes.Application.submit"><img src="@routes.Assets.at("images/new_york.png")"/></a>
+       <input type="hidden" name="name" value="new york">
+    }
+    
   </div>
-</section>
 
-<<<<<<< HEAD
-</div>
+  <div class="content">
+    <a href="/city/1"><img src="@routes.Assets.at("images/london.png")"/></a>
+  </div>
 
-  <ul>
-  @for((key,value) <- products) {
-    <li>
-	  @value.getName()
-    </li>
-  }
-  </ul>
+  <div class="content">
+    <a href="@routes.Application.submit"><img src="@routes.Assets.at("images/hawaii.png")"/></a>
+  </div>
+
+<section>
 
 }
 

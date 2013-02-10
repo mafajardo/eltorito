@@ -1,0 +1,53 @@
+@(products: Map[String, Product], hearstItems: Map[String, List[HearstItem]])
+
+@import controllers._
+@import models._
+@import helper._
+
+@main("Hearst Hackathon 2013") {
+<div class="main">
+
+<section class="articles">
+  <h2>Catch up on Articles about New York</h2>
+  <div class="article-list">
+
+    @for((key,value) <- hearstItems) {
+      @for(item <- value) {
+        <div class="content">
+          <a href=@item.getDefaultUrl()>
+            <div class="photo">
+              <img src=@item.getDefaultUrl() alt="some article">
+            </div>
+            <p>Read something</p>
+          </a>
+        </div>
+      }
+    }
+
+	</div>
+</section>
+
+<section class="fashion">
+  <h2>Shop New York fashion</h2>
+  <div class="products">
+
+    @for((key,value) <- products) {
+      <article class="content">
+        <a href="/link">
+          <div class="info">
+            <h3 class="product-name">@value.getName()</h3>
+          </div>
+          <div class="photo">
+            <img src="http://cdn1.giltcdn.com/images/share/uploads/0000/0001/5642/156427646/220x294.jpg" alt="Buy something">
+          </div>
+        </a>
+      </article>
+    }
+
+  </div>
+</section>
+
+</div>
+
+}
+
