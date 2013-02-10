@@ -1,0 +1,74 @@
+body {
+  max-width: 970px;
+  margin: 0 auto;
+}
+
+section {
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+}
+
+h1 {
+  font-family: 'InaiMathi', 'Arial', 'serif';
+}
+h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 24px;
+  font-style: italic;
+}
+h3 {
+  font-size: 20px;
+  font-style: italic;
+  line-height: 0.6; 
+}
+
+a {
+  color: white;
+}
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+.content {
+  float: left;
+  border: 1px solid black;
+  background: black;
+  margin: 0 10px;
+}
+
+.articles {
+  height:400px;
+}
+.articles .content {
+  height: 322px;
+}
+.articles .photo {
+  width: 152px;
+  height: 228px;
+}
+
+.fashion {
+  height: 500px;
+}
+.fashion .content {
+  height: 410px;
+}
+.fashion .photo {
+  width:220px;
+  height:294px;
+}
+.fashion .info {
+  padding: 0 8px;
+}
+
+.travel {
+  height:400px;
+}
+.travel .content {
+  margin: 0 1px;
+}
+.travel .photo {
+  width:315px;
+  height:176px;
+}
+
