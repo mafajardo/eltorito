@@ -1,5 +1,6 @@
 package models;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,6 +96,15 @@ public class GiltApiClient {
 		} catch (Exception e) {
 		    System.out.println("Error fetching active sales from Gilt" + e);
 		    return Weather.TEMP.COLD;
+		}
+	}
+	
+	public boolean isImageBroken(String uri){
+		try {
+			return request.isImageBroken(uri);
+		} catch (Exception e) {
+		    System.out.println("Error fetching active sales from Gilt" + e);
+		    return true;
 		}
 	}
 }
