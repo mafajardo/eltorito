@@ -1,5 +1,8 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nonnull;
 
 import org.codehaus.jackson.annotate.JsonCreator;
@@ -16,6 +19,9 @@ public class HearstItem {
 	@JsonProperty("keywords")
 	@Nonnull
 	private String keywords;
+	
+	public List<GiltProduct> giltProducts = new ArrayList<GiltProduct>();
+	
 	
 	@JsonCreator
 	public HearstItem(@JsonProperty("default_url") @Nonnull String defaultUrl, 

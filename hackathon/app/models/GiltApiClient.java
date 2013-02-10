@@ -28,6 +28,8 @@ public class GiltApiClient {
 		Map<String, Product> products = new HashMap<String, Product>();
 		List<Sale> sales = getActiveSales();
 		
+		Long st = System.currentTimeMillis();
+		
 		System.out.println("Sales Size: " + sales.size());
 		long ps = 0;
 		for(Sale sale : sales) {
@@ -55,6 +57,10 @@ public class GiltApiClient {
 				products = new HashMap<String, Product>();
 			}
 		}
+		
+		Long et = System.currentTimeMillis();
+		
+		System.out.println("Loaded products time: " + ((et - st)/1000/60) + " mins" + ((et - st)/1000) + "secs");
 		
 		return products;
 	}

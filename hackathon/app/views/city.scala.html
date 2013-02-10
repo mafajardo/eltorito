@@ -1,4 +1,4 @@
-@(temp: String, weather: String, weatherImg: String, cityCode : String, hearstItems:Map[String, List[HearstItem]])
+@(temp: String, weather: String, weatherImg: String, cityCode : String, hearstItems:List[HearstItem])
 
 @import controllers._
 @import models._
@@ -25,18 +25,23 @@
     <h2>Catch up on Articles about New York</h2>
     <div class="article-list">
 
-      @for((key,value) <- hearstItems) {
-        @for(item <- value) {
-          <div class="content">
-            <a href=@item.getDefaultUrl()>
-              <p>Read something</p>
-              <div class="photo">
-                <img src=@item.getDefaultUrl() alt="some article">
-              </div>
-            </a>
+    @for(item <- hearstItems) {
+      <div class="content">
+        <a href=@item.getDefaultUrl()>
+          <p>Read something</p>
+          <div class="photo">
+            <img src=@item.getDefaultUrl() alt="some article">
+            
+            @for(product <- item.giltProducts) {
+            	<div class="content">
+            		<a href="@product.buyUrl"><img src="@product.imageUrl"/></a>
+            	<div>
+            }
           </div>
-        }
-      }
+        </a>
+      </div>
+    }
+  
     </div>
   </section>
 </section>

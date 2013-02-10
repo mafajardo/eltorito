@@ -2,9 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import models.Weather.CITY;
 import models.Weather.TEMP;
@@ -36,7 +34,7 @@ public class HearstApiClient {
 		return (items == null) ? null : items.getItems();
 	}
 	
-	public Map<String, List<HearstItem>> getItems(CITY cityCode, TEMP weather) {
+	public List<HearstItem> getItems(CITY cityCode, TEMP weather) {
 		
 		// Set keywords.
 		List<String> keywords = null;
@@ -72,30 +70,48 @@ public class HearstApiClient {
 		}
 		
 		// Create map of items.
-		Map<String, List<HearstItem>> itemsMap = new HashMap<String, List<HearstItem>>();
+		List<HearstItem> itemsToAdd = new ArrayList<HearstItem>();
 		
 		for (String keyword : keywords) {
-			if (itemsMap.size() < 6){
+			if (itemsToAdd.size() < 10){
 				String uri = Endpoint.ITEM_URI.replace("{keywords}", city + keyword+"%25");
+				
+				Long st = System.currentTimeMillis();
 				List<HearstItem> items = getItemsList(uri);
+				Long et = System.currentTimeMillis();
+				System.out.println("Loaded keyword '"+ keyword +"' time: " + ((et - st)/1000/60) + " mins" + ((et - st)/1000) + "secs");
 				
 				if (items != null) {
-					List<HearstItem> itemsToAdd = new ArrayList<HearstItem>();
+					int itemsPerKeyword = 0;
+					
+					st = System.currentTimeMillis();
+					
 					for (HearstItem i : items){
 						try {
-							if (itemsToAdd.size() < 3 && !itemIncluded(itemsToAdd, i.getDefaultUrl()) && request.isCorrectImage(i.getDefaultUrl()))
+							if (itemsPerKeyword++ < 5 && !itemIncluded(itemsToAdd, i.getDefaultUrl()) && request.isCorrectImage(i.getDefaultUrl())){
+								
+								//Move from 'man, floral pants, castle' to 'floral pants'
+								String[] hearstKeywords = i.getKeywords().split(",");
+								for (String s : hearstKeywords)
+									if (s.contains(keyword))
+										i.setKeywords(s);
+								
 								itemsToAdd.add(i);
+							}
 						} catch (Exception e) {
 						    System.out.println("Error checking image " + e);
 						}
 					}
 					
-					itemsMap.put(keyword, itemsToAdd);
+					et = System.currentTimeMillis();
+					
+					System.out.println("Loaded images '"+ keyword +"' time: " + ((et - st)/1000/60) + " mins" + ((et - st)/1000) + "secs");
+					
 				}
 			}
 		}
 		
-		return itemsMap;
+		return itemsToAdd;
 	}
 	
 	private boolean itemIncluded(List<HearstItem> items, String url){
