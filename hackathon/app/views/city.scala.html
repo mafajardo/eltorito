@@ -6,34 +6,51 @@
 
 @main("Your City Experience") {
 
-      
- <row>
-  <span4>
-    <img src="@routes.Assets.at("images/"+cityCode+".png")"/>
-  </span4>
-  <span4>
-    <img src="@routes.Assets.at("images/"+weatherImg+".png")"/>
-    Temperature: @temp oF
-    Current weather: @weather 
-  </span4>
-</row>
 
-<row>
-  <span14>
-    <h2>Catch up on Articles about @cityCode</h2>
+<div class="row">
+  <div class="span14">
+      <div class="span6">
+        <img src="@routes.Assets.at("images/"+cityCode+".png")"/>
+      </div>
+      <div class="span4">
+        <img src="@routes.Assets.at("images/"+weatherImg+".png")"/>
+        <br>
+        <br>
+        <h4>
+          Temperature: @temp &deg;F
+          <br>
+          Current weather: @weather
+        </h4>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span14" style="height:5 0px;">
+  </div>
+</div>
+
+<div class="row">
+      <div class="row">
+        <ul class="nav nav-list">
+          <h3><center>Shop styles based on articles.</center></h3>
+          <li class="divider"></li>
+        </ul>
+      </div>
+    
 
       <ul class="thumbnails">
       @for(item <- hearstItems) {
             <li class="span4">
               <!-- Button to trigger modal -->
-              <a href="#myModal" role="button" class="thumbnail" data-toggle="modal">
+              <a href="#@item.getId()" role="button" class="thumbnail" data-toggle="modal">
                 <img src=@item.getDefaultUrl() data-src=:"holder.js/260x180" style="width: 260px; height: 300px;" alt=""/>
               </a>
 
               <!-- Modal -->
-              <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div id="@item.getId()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
                   <h3 id="myModalLabel">Products</h3>
                 </div>
                 <div class="modal-body">
@@ -49,7 +66,6 @@
             </li>
       }
       </ul>
-  <span14>
-  </row>
+  </div>
 }
 

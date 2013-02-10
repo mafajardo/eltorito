@@ -1,3 +1,31 @@
+html, body {
+    background-color: #eee;
+}
+body {
+    padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+}
+
+.container > footer p {
+    text-align: center; /* center align it with the container */
+}
+.container {
+    width: 940px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+}
+
+/* The white background content wrapper */
+.content {
+    background-color: #fcfcfc;
+    padding: 20px;
+    margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+    -webkit-border-radius: 0 0 6px 6px;
+       -moz-border-radius: 0 0 6px 6px;
+            border-radius: 0 0 6px 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+            box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    min-height: 10px;
+}
+
 .navbar .brand {
   font-size: 25px;
 }
@@ -12,7 +40,8 @@
   font-size: 20px;
   display: block;
   float: right;
-  margin: 10px 50px 0 0;
+  margin: 10px 0 0 0;
+  color: #999;
 }
 
 .city {
@@ -24,105 +53,8 @@
   border-bottom: 1px solid black;
 }
 
-/*body {
-  background-color: rgb(248, 248, 248);
+.center{
+  width: 980px;
+  margin-right: auto;
+  margin-left: auto;
 }
-.main {
-  max-width: 970px;
-  margin: 0 auto;
-}
-
-section {
-  padding: 10px 0;
-}
-
-.top {
-  background: black;
-  padding: 10px;
-  height: 40px;
-}
-
-h1 {
-  font-family: 'InaiMathi', 'Arial', 'serif';
-  color: white;
-  float: left;
-}
-h2 {
-  font: 1.35em/36px Georgia, serif;
-  display: block;
-  color: #000;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  height: 36px;
-}
-.navbar-inner {
-  background-image: -webkit-linear-gradient(top, #555,black);
-}
-.navbar .brand {
-  padding: 15px 20px 0px;
-  font-size: 30px;
-  color: rgb(241, 241, 241);
-  text-shadow: 0;
-}
-
-.navbar h2 {
-  color: rgb(241, 241, 241);
-  float:right;
-}
-h3 {
-  font-family: "open-sans","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
-  font-size: 20px;
-  line-height: 0.6; 
-}
-
-a {
-  color: white;
-}
-a:hover {
-  color: white;
-  text-decoration: none;
-}
-.content {
-  float: left;
-  border: 1px solid black;
-  margin: 0 10px;
-}
-.city-content{
-  border-bottom: 1px dotted red;
-  display:inline;
-  min-height:300px;
-}
-.articles, .fashion {
-  display: block;
-}
-.articles {
-  height:320px;
-  border-bottom: 1px dotted red;
-}
-.articles .content {
-}
-.articles .photo {
-  width: 152px;
-  height: 194px;
-}
-
-.fashion {
-  height: 380px;
-  border-bottom: 1px dotted red;
-}
-.fashion .photo {
-  width:220px;
-  height:294px;
-}
-.fashion .info {
-  display:none;
-}
-.fashion .content:hover .info {
-  display:block;
-  padding: 0 8px;
-  min-height: 100px;
-  width: 204px;
-  background-color: rgba(22, 22, 22, 0.65);
-  position: absolute;
-}*/

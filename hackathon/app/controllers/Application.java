@@ -28,7 +28,7 @@ public class Application extends Controller {
 	public static Result index() {
 		
 		//Cache.set("products", "dd");
-		getProductsFromCache();
+		//getProductsFromCache();
 		
 		return ok(index.render(""));
 	}
