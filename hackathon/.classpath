@@ -89,5 +89,5 @@
   <classpathentry path="/Applications/play-2.0.1/framework/../repository/local/org.easytesting/fest-util/1.1.6/jars/fest-util.jar" kind="lib"></classpathentry>
   <classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"></classpathentry>
   <classpathentry path="bin" kind="output"></classpathentry>
-  <classpathentry path="/web/hackathon/target/scala-2.9.1/classes_managed" kind="lib"></classpathentry>
+  <classpathentry path="/web/eltorito/hackathon/target/scala-2.9.1/classes_managed" kind="lib"></classpathentry>
 </classpath>

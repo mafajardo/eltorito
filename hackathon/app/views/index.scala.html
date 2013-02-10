@@ -1,10 +1,17 @@
-@(sales: List[GiltSale])
+@(products: Map[String, Product])
 
 @import controllers._
 @import models._
 
 @main("Hearst Hackathon 2013") {
     
-    <h1>Test</h1>
+  <h2>W|WEAR</h2>
     
+  <ul>
+  @for((key,value) <- products) {
+    <li>
+	  @value.getName()
+    </li>
+  }
+  </ul>
 }
