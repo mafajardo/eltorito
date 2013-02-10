@@ -15,12 +15,11 @@
       <div class="span4">
         <img src="@routes.Assets.at("images/"+weatherImg+".png")"/>
         <br>
-        <br>
-        <h4>
+        <h5>
           Temperature: @temp &deg;F
           <br>
           Current weather: @weather
-        </h4>
+        </h5>
       </div>
   </div>
 </div>
@@ -55,11 +54,19 @@
                 </div>
                 <div class="modal-body">
                   <ul class="thumbnails">
+                  @if(item.giltProducts.size>0) {
                     @for(product <- item.giltProducts) {
-                        <span8>
+                        <div class="span8">
                           <a href="@product.buyUrl"><img src="@product.imageUrl"/></a>
-                        </span8>
+                        </div>
                       }
+                  }else{
+                    <div class="span8">
+                       <p>
+                          No products found.
+                       </p>
+                    </div>
+                   }
                   </ul>
                 </div>
               </div>
