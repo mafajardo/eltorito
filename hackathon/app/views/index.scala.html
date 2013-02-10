@@ -1,4 +1,4 @@
-@(sales: List[GiltSale])
+@(products: Map[String, Product])
 
 @import controllers._
 @import models._
@@ -70,5 +70,16 @@
   </div>
 </section>
 
+<<<<<<< HEAD
 </div>
-}	
+
+  <ul>
+  @for((key,value) <- products) {
+    <li>
+	  @value.getName()
+    </li>
+  }
+  </ul>
+
+}
+
