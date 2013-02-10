@@ -72,7 +72,7 @@ public class GiltApiClient {
 		return product;
 	}
 
-	public Weather.TEMP getWeather(Weather.CITY cityCode){
+	public Weather getWeather(Weather.CITY cityCode){
 		String endpoint = "";
 		
 		if (cityCode.equals(Weather.CITY.HI))
@@ -86,10 +86,10 @@ public class GiltApiClient {
 			String json = request.get(endpoint);
 			Weather weather = mapper.readValue(json, Weather.class);
 			
-			return weather.getTempEnum();
+			return weather;
 		} catch (Exception e) {
 		    System.out.println("Error fetching active sales from Gilt" + e);
-		    return Weather.TEMP.COLD;
+		    return null;
 		}
 	}
 }

@@ -18,11 +18,10 @@ public class HearstApiClient {
 	private ObjectMapper mapper = new ObjectMapper();
 	private HttpRequest request = new HttpRequest();
 	
-//	private List<String> very_cold = Arrays.asList("bag","pants","shirt","sweater","puffer","parka","dress","blanket","hoodie","hat,","gloves","pump","heel","boots","scarf","jacket","shoe","denim","leather","belt","sock");
-	private List<String> very_cold = Arrays.asList("bag");
-	private List<String> cold = Arrays.asList("bag","pants","shirt","sweater","parka","dress","hoodie","hat,","gloves","pump","heel","boots","scarf","flats","jacket","shoe","denim","leather","belt","sock");
-	private List<String> warm = Arrays.asList("bag","pants","shirt","dress","hat,","pump","heel","flats","shoe","denim","shorts","belt","sock");
-	private List<String> hot = Arrays.asList("bag","pants","shirt","dress","pump","heel","flats","shoe","denim","shorts","sandal","belt");
+	private List<String> very_cold = Arrays.asList("pants","shirt","sweater","puffer","parka","dress","blanket","hoodie","hat,","gloves","pump","heel","boots","scarf","jacket","shoe","denim","leather","belt","sock");
+	private List<String> cold = Arrays.asList("pants","shirt","sweater","parka","dress","hoodie","hat,","gloves","pump","heel","boots","scarf","flats","jacket","shoe","denim","leather","belt","sock");
+	private List<String> warm = Arrays.asList("pants","shirt","dress","hat,","pump","heel","flats","shoe","denim","shorts","belt","sock");
+	private List<String> hot = Arrays.asList("pants","shirt","dress","pump","heel","flats","shoe","denim","shorts","sandal","belt");
 	
 	private List<HearstItem> getItemsList(String uri) {
 		HearstItemWrapper items = null;
@@ -74,25 +73,36 @@ public class HearstApiClient {
 		
 		// Create map of items.
 		Map<String, List<HearstItem>> itemsMap = new HashMap<String, List<HearstItem>>();
+		
 		for (String keyword : keywords) {
-			String uri = Endpoint.ITEM_URI.replace("{keywords}", city + keyword+"%25");
-			List<HearstItem> items = getItemsList(uri);
-			
-			if (items != null) {
-				List<HearstItem> itemsToAdd = new ArrayList<HearstItem>();
-				for (HearstItem i : items){
-					try {
-						if (itemsToAdd.size() < 3 && request.isCorrectImage(i.getDefaultUrl()))
-							itemsToAdd.add(i);
-					} catch (Exception e) {
-					    System.out.println("Error checking image " + e);
-					}
-				}
+			if (itemsMap.size() < 6){
+				String uri = Endpoint.ITEM_URI.replace("{keywords}", city + keyword+"%25");
+				List<HearstItem> items = getItemsList(uri);
 				
-				itemsMap.put(keyword, itemsToAdd);
+				if (items != null) {
+					List<HearstItem> itemsToAdd = new ArrayList<HearstItem>();
+					for (HearstItem i : items){
+						try {
+							if (itemsToAdd.size() < 3 && !itemIncluded(itemsToAdd, i.getDefaultUrl()) && request.isCorrectImage(i.getDefaultUrl()))
+								itemsToAdd.add(i);
+						} catch (Exception e) {
+						    System.out.println("Error checking image " + e);
+						}
+					}
+					
+					itemsMap.put(keyword, itemsToAdd);
+				}
 			}
 		}
 		
 		return itemsMap;
+	}
+	
+	private boolean itemIncluded(List<HearstItem> items, String url){
+		for (HearstItem i : items)
+			if (i.getDefaultUrl().equals(url))
+				return true;
+		
+		return false;
 	}
 }

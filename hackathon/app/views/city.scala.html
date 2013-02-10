@@ -1,4 +1,4 @@
-@(temp: String, cityCode : String, hearstItems:Map[String, List[HearstItem]])
+@(temp: String, weather: String, weatherImg: String, cityCode : String, hearstItems:Map[String, List[HearstItem]])
 
 @import controllers._
 @import models._
@@ -6,11 +6,15 @@
 
 @main("Hearst Hackathon 2013") {
   <div class="content">
-    <a href="/city/NY"><img src="@routes.Assets.at("images/"+cityCode+".png")"/></a>
+    <img src="@routes.Assets.at("images/"+cityCode+".png")"/>
   </div>
   <br />
   <div class="content">
-    Temperature: @temp
+    <img src="@routes.Assets.at("images/"+weatherImg+".png")"/>
+  </div>
+  <div class="content">
+    Temperature: @temp oF
+    Current weather: @weather 
   </div>
   <br />
   <div class="content">

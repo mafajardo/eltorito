@@ -4,7 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /home                       controllers.Application.submit()
+#GET     /home                       controllers.Application.submit()
 GET     /city/*id                       controllers.Application.city(id:String)
 
 # Map static resources from the /public folder to the /assets URL path

@@ -30,9 +30,9 @@ public class Weather {
 			Double temp = Double.parseDouble(current_observation.getTemp_f());
 			if (temp < 31)
 				return TEMP.V_COLD;
-			else if (temp > 31 && temp < 70)
+			else if (temp > 31 && temp < 60)
 				return TEMP.COLD;
-			else if (temp > 71 && temp < 80)
+			else if (temp > 61 && temp < 80)
 				return TEMP.WARM;
 			else
 				return TEMP.HOT;
