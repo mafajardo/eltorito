@@ -4,17 +4,6 @@
 @import models._
 
 @main("Hearst Hackathon 2013") {
-    
-  <h2>W|WEAR</h2>
-    
-  <ul>
-  @for((key,value) <- products) {
-    <li>
-	  @value.getName()
-    </li>
-  }
-  </ul>
-}
 
 <h1>W|WEAR</h1>
 <select id="city-selector" class="btn btn-danger">
@@ -133,5 +122,13 @@
   </div>
 </section>
 
-}	
+  <ul>
+  @for((key,value) <- products) {
+    <li>
+	  @value.getName()
+    </li>
+  }
+  </ul>
+
+}
 
