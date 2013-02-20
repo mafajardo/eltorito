@@ -6,6 +6,38 @@
 
 @main("Your " + cityName + " Experience") {
 
+<style>
+#container {
+  background: #FFF;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  clear: both;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.box {
+  margin: 5px;
+  padding: 5px;
+  background: #D8D5D2;
+  font-size: 11px;
+  line-height: 1.4em;
+  float: left;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+          width: 200px;
+          max-width: 200px;
+
+}
+
+.box img {
+  max-width: 200px;
+}
+</style>
+
 <div class="row">
   <div class="span14">
       <div class="span5 offset1">
@@ -42,44 +74,60 @@
           <li class="divider"></li>
         </ul>
       </div>
-    
 
-      <ul class="thumbnails">
-      @for(item <- hearstItems) {
-            <li class="span4">
-              <!-- Button to trigger modal -->
-              <a href="#@item.getId()" role="button" class="thumbnail" data-toggle="modal">
-                <img src=@item.getDefaultUrl() data-src=:"holder.js/260x180" style="width: 260px; height: 300px;" alt=""/>
-              </a>
+      <div id="container">
+        @for(item <- hearstItems) {
+          <div class="box">
+                <!-- Button to trigger modal -->
+                <a href="#@item.getId()" role="button" data-toggle="modal">
+                  <img src=@item.getDefaultUrl() alt=""/>
+                </a>
 
-              <!-- Modal -->
-              <div id="@item.getId()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-                  <h3 id="myModalLabel">Suggested Products</h3>
-                  featured by <a href="www.gilt.com">gilt</a>
+                <!-- Modal -->
+                <div id="@item.getId()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h3 id="myModalLabel">Suggested Products</h3>
+                    featured by <a href="www.gilt.com">gilt</a>
+                  </div>
+                  <div class="modal-body">
+                    <ul class="thumbnails">
+                    @if(item.giltProducts.size>0) {
+                      @for(product <- item.giltProducts) {
+                          <div class="span4">
+                            <a href="@product.buyUrl"><img src="@product.imageUrl"/></a>
+                          </div>
+                        }
+                    }else{
+                      <div class="span8">
+                         <p>
+                            No products found.
+                         </p>
+                      </div>
+                     }
+                    </ul>
+                  </div>
                 </div>
-                <div class="modal-body">
-                  <ul class="thumbnails">
-                  @if(item.giltProducts.size>0) {
-                    @for(product <- item.giltProducts) {
-                        <div class="span4">
-                          <a href="@product.buyUrl"><img src="@product.imageUrl"/></a>
-                        </div>
-                      }
-                  }else{
-                    <div class="span8">
-                       <p>
-                          No products found.
-                       </p>
-                    </div>
-                   }
-                  </ul>
-                </div>
-              </div>
-            </li>
-      }
-      </ul>
+
+          </div>
+
+        }
+      </div>
   </div>
+
+  <script>
+    $(function(){
+
+      var $container = $('#container');
+
+      $container.imagesLoaded( function(){
+        $container.masonry({
+          itemSelector : '.box'
+        });
+      });
+
+    });
+  </script>
+
 }
 
