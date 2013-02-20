@@ -38,7 +38,7 @@
 }
 </style>
 
-<div class="row">
+<div class="row-fluid">
   <div class="span14">
       <div class="span5 offset1">
         <img width="380" height="220" src="@routes.Assets.at("images/"+cityCode+".png")"/>
@@ -62,58 +62,49 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="span14" style="height:40px;">
-  </div>
+<div class="row-fluid">
+  <ul class="nav nav-list">
+    <h3><center>Shop styles based on Hearst articles.</center></h3>
+    <li class="divider"></li>
+  </ul>
 </div>
 
-<div class="row">
-      <div class="row">
-        <ul class="nav nav-list">
-          <h3><center>Shop styles based on Hearst articles.</center></h3>
-          <li class="divider"></li>
-        </ul>
-      </div>
+<div id="container">
+  @for(item <- hearstItems) {
+    <div class="box">
+      <!-- Button to trigger modal -->
+      <a href="#@item.getId()" role="button" data-toggle="modal">
+        <img src=@item.getDefaultUrl() alt=""/>
+      </a>
 
-      <div id="container">
-        @for(item <- hearstItems) {
-          <div class="box">
-                <!-- Button to trigger modal -->
-                <a href="#@item.getId()" role="button" data-toggle="modal">
-                  <img src=@item.getDefaultUrl() alt=""/>
-                </a>
-
-                <!-- Modal -->
-                <div id="@item.getId()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-                    <h3 id="myModalLabel">Suggested Products</h3>
-                    featured by <a href="www.gilt.com">gilt</a>
-                  </div>
-                  <div class="modal-body">
-                    <ul class="thumbnails">
-                    @if(item.giltProducts.size>0) {
-                      @for(product <- item.giltProducts) {
-                          <div class="span4">
-                            <a href="@product.buyUrl"><img src="@product.imageUrl"/></a>
-                          </div>
-                        }
-                    }else{
-                      <div class="span8">
-                         <p>
-                            No products found.
-                         </p>
-                      </div>
-                     }
-                    </ul>
-                  </div>
+      <!-- Modal -->
+      <div id="@item.getId()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+          <h3 id="myModalLabel">Suggested Products</h3>
+          featured by <a href="www.gilt.com">gilt</a>
+        </div>
+        <div class="modal-body">
+          <ul class="thumbnails">
+          @if(item.giltProducts.size>0) {
+            @for(product <- item.giltProducts) {
+                <div class="span4">
+                  <a href="@product.buyUrl"><img src="@product.imageUrl"/></a>
                 </div>
-
-          </div>
-
-        }
+              }
+          }else{
+            <div class="span8">
+               <p>
+                  No products found.
+               </p>
+            </div>
+           }
+          </ul>
+        </div>
       </div>
-  </div>
+    </div>
+  }
+</div>
 
   <script>
     $(function(){
