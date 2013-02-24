@@ -106,7 +106,8 @@ public class Application extends Controller {
 	    }
 	}
 
-	public static Result city(String cityCode) {
+	public static Result city() {
+        String cityCode = "NY";
 		Weather weather = client.getWeather(Weather.CITY.valueOf(cityCode));
 		
 		List<HearstItem> items = null;
@@ -179,6 +180,6 @@ public class Application extends Controller {
 	public static void main(String args[]) {
 		//Cache.set("products", "d");
 		//getProductsFromCache();
-		Result s = city("HI");
+		Result s = city();
 	}
 }
