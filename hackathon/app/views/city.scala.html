@@ -19,6 +19,8 @@
 }
 
 .box {
+  overflow: hidden;
+  position: relative;
   margin: 5px;
   padding: 5px;
   background: #D8D5D2;
@@ -36,6 +38,42 @@
 .box img {
   max-width: 200px;
 }
+
+.item-overlay {
+  position:absolute;
+}
+
+.social-bar {
+  width: 180px;
+  /*top: 20px;*/
+  height: 50px;
+  padding: 0 10px;
+}
+
+.social-bar img {
+  opacity:0.8;
+  filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+
+.slider {
+  opacity:0.5;
+  filter:alpha(opacity=50); /* For IE8 and earlier */
+
+  background-color: #333;
+  color:white;
+
+  width: 190px;
+  bottom: -40px;
+  height:60px;
+  padding: 5px;
+}
+
+.slider .title {
+  font-size: 1.5em;
+  font-weight: bold;
+  height: 25px;
+}
+
 </style>
 
 <div class="row-fluid">
@@ -75,6 +113,21 @@
       <!-- Button to trigger modal -->
       <a href="#@item.getId()" role="button" data-toggle="modal">
         <img src=@item.getDefaultUrl() alt=""/>
+
+        <div class="social-bar item-overlay">
+          <a href="http://facebook.com">
+            <img style="float:left;" src="@routes.Assets.at("images/facebook.png")">
+          </a>
+          <img style="float:right;" src="@routes.Assets.at("images/twitter.png")">
+        </div>
+        <div class="slider item-overlay">
+          <div class="title">
+            My Product
+          </div>
+          <div class="desc">
+            my description
+          </div>
+        </div>
       </a>
 
       <!-- Modal -->
@@ -102,13 +155,13 @@
           </ul>
         </div>
       </div>
+
     </div>
   }
 </div>
 
   <script>
     $(function(){
-
       var $container = $('#container');
 
       $container.imagesLoaded( function(){
@@ -116,9 +169,30 @@
           itemSelector : '.box'
         });
       });
+    });
 
+    // /* SLIDER */
+    $(document).ready(function(){
+      $(".box").hover(function(){
+        var slider = $(".slider",$(this));
+        slider.show().animate({"bottom":"0"});
+
+        var bar = $(".social-bar",$(this));
+        bar.show().animate({"top":"20px"});
+
+      },
+      function(){
+        var slider = $(".slider",$(this));
+        slider.animate(
+          {"bottom":"-40px",
+
+          }
+        );
+
+        var bar = $(".social-bar",$(this));
+        bar.show().animate({"top":"-50px"});
+      });
     });
   </script>
-
 }
 
