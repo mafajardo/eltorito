@@ -103,11 +103,14 @@ a:hover {
 
 #content-tags .tag {
   display: inline-block;
-  float: left;
-  background-color: #94A4AF;
+  float: right;
+  background-color: #47a6c6;
   margin-right: 10px;
   padding: 5px;
   color: white;
+}
+#content-tags .tag:hover {
+  background-color: #55C7ED;
 }
 
 #content-tags .remove-tag {
@@ -130,18 +133,19 @@ a:hover {
   background: #FFF;
   padding: 5px;
   margin-bottom: 20px;
+  margin-top: 30px;
   border-radius: 5px;
   clear: both;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
+
 }
 
 .box {
   overflow: hidden;
   position: relative;
   margin: 5px;
-  font-size: 11px;
   line-height: 1.4em;
   float: left;
   width: 200px;
@@ -154,6 +158,7 @@ a:hover {
 
 .item-overlay {
   position:absolute;
+  font-size: 11px;
 }
 
 .social-bar {
@@ -221,35 +226,18 @@ a:hover {
 
 .modal-buttons {
   font-weight: bold;
-  font-size:1.5em;
   color:white;
-  padding:10px;
   margin-bottom:10px;
-  opacity: 1;
   width: 105px;
   text-align: center;
 }
 
-.modal-buttons:hover {
-  opacity: 0.7;
-}
 
 .modal-subtitle {
   font-size: 11px;
   font-weight: normal;
 }
 
-.modal-button-read {
-  background-color: purple;
-}
-
-.modal-button-buy {
-  background-color: blue;
-}
-
-.modal-button-share {
-  background-color: green;
-}
 
 .modal-show-read,
 .modal-show-buy,
@@ -284,10 +272,151 @@ a:hover {
         border-radius: 0;
 }
 
+.modal-header {
+  background-color: #f5f3e8;
+}
+
 .modal-header h3 {
   font-family: Georgia, serif;
 }
 
 .modal-footer {
   text-align: left;
+}
+
+.comment .comment-author {
+  font-weight: bold;
+}
+
+.comment .comment-date {
+  font-size: small;
+  color: #47a6c6;
+}
+.comment .comment-content {
+  padding-left: 10px;
+}
+
+.comment {
+  margin-bottom: 10px;
+}
+
+.modal.fade.in.modal-tag {
+  top: 35%;
+  width: 300px;
+  padding: 25px;
+  margin-left: -150px;
+}
+.modal.fade.in.modal-tag input {
+  width: 286px;
+}
+
+/*http://charliepark.org/bootstrap_buttons/*/
+
+.btn-read {
+  background-color: hsl(272, 100%, 82%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e7ccfe", endColorstr="#d4a3fe");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#e7ccfe), to(#d4a3fe));
+  background-image: -moz-linear-gradient(top, #e7ccfe, #d4a3fe);
+  background-image: -ms-linear-gradient(top, #e7ccfe, #d4a3fe);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e7ccfe), color-stop(100%, #d4a3fe));
+  background-image: -webkit-linear-gradient(top, #e7ccfe, #d4a3fe);
+  background-image: -o-linear-gradient(top, #e7ccfe, #d4a3fe);
+  background-image: linear-gradient(#e7ccfe, #d4a3fe);
+  border-color: #d4a3fe #d4a3fe hsl(272, 100%, 80%);
+  color: white !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.13);
+  -webkit-font-smoothing: antialiased;
+  display: block;
+}
+
+.btn-buy {
+  background-color: hsl(195, 60%, 35%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2d95b7", endColorstr="#23748e");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#2d95b7), to(#23748e));
+  background-image: -moz-linear-gradient(top, #2d95b7, #23748e);
+  background-image: -ms-linear-gradient(top, #2d95b7, #23748e);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2d95b7), color-stop(100%, #23748e));
+  background-image: -webkit-linear-gradient(top, #2d95b7, #23748e);
+  background-image: -o-linear-gradient(top, #2d95b7, #23748e);
+  background-image: linear-gradient(#2d95b7, #23748e);
+  border-color: #23748e #23748e hsl(195, 60%, 32.5%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.16);
+  -webkit-font-smoothing: antialiased;
+  display: block;
+}
+
+.btn-share {
+  background-color: hsl(145, 62%, 68%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cdf3dd", endColorstr="#7adfa4");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#cdf3dd), to(#7adfa4));
+  background-image: -moz-linear-gradient(top, #cdf3dd, #7adfa4);
+  background-image: -ms-linear-gradient(top, #cdf3dd, #7adfa4);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cdf3dd), color-stop(100%, #7adfa4));
+  background-image: -webkit-linear-gradient(top, #cdf3dd, #7adfa4);
+  background-image: -o-linear-gradient(top, #cdf3dd, #7adfa4);
+  background-image: linear-gradient(#cdf3dd, #7adfa4);
+  border-color: #7adfa4 #7adfa4 hsl(145, 62%, 63%);
+  color: white !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
+  -webkit-font-smoothing: antialiased;
+  display: block;
+}
+
+.btn-facebook {
+  background-color: hsl(201, 100%, 30%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00a5ff", endColorstr="#006399");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#00a5ff), to(#006399));
+  background-image: -moz-linear-gradient(top, #00a5ff, #006399);
+  background-image: -ms-linear-gradient(top, #00a5ff, #006399);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00a5ff), color-stop(100%, #006399));
+  background-image: -webkit-linear-gradient(top, #00a5ff, #006399);
+  background-image: -o-linear-gradient(top, #00a5ff, #006399);
+  background-image: linear-gradient(#00a5ff, #006399);
+  border-color: #006399 #006399 hsl(201, 100%, 25%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+  -webkit-font-smoothing: antialiased;
+}
+
+
+.btn-twitter {
+  background-color: hsl(201, 100%, 58%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8ed7ff", endColorstr="#28b4ff");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#8ed7ff), to(#28b4ff));
+  background-image: -moz-linear-gradient(top, #8ed7ff, #28b4ff);
+  background-image: -ms-linear-gradient(top, #8ed7ff, #28b4ff);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8ed7ff), color-stop(100%, #28b4ff));
+  background-image: -webkit-linear-gradient(top, #8ed7ff, #28b4ff);
+  background-image: -o-linear-gradient(top, #8ed7ff, #28b4ff);
+  background-image: linear-gradient(#8ed7ff, #28b4ff);
+  border-color: #28b4ff #28b4ff hsl(201, 100%, 53%);
+  color: white !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
+  -webkit-font-smoothing: antialiased;
+  display:block;
+}
+
+#wwear-header {
+  background-color: #333;
+  height: 90px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+body {
+  padding-top: 0;
+  background-color: white;
+}
+
+#wwear-header img {
+  width: 100px;
+  top: 20px;
+  position: relative;
+  left: 50px;
 }
