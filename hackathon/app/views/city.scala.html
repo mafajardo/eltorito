@@ -5,63 +5,36 @@
 @import helper._
 
 @main() {
-<div class="search-box">
+<!-- <div class="search-box">
   <input type="text" value="search" style="margin: 0;"/>&nbsp;<i class="icon-search icon-large"></i>
-</div>
-<div id="auth-buttons">
-  <a class="btn-auth btn-facebook" href="#">
-      Sign in with <b>facebook</b>
-  </a>
-  <a class="btn-auth btn-twitter" href="#">
-      Sign in with <b>twitter</b>
-  </a>
-</div>
+</div> -->
 
 <div class="row-fluid">
-  <!-- city selection -->
-  <div id="city-selection" class="span5">
-    <div class="city-selection-button">
-      Select a City
+  <div class="span6"
+    <!-- city selection -->
+    <div id="city-selection">
+      Select a City:
+      <select id="city-selection-select">
+        <option value=""></option>
+        <option value="NY">New York</option>
+        <option value="LO">London</option>
+        <option value="HI">Hawaii</option>
+      </select>
     </div>
-    <select id="city-selection-select">
-      <option value="NY">New York</option>
-      <option value="LO">London</option>
-      <option value="HI">Hawaii</option>
-    </select>
-  </div>
-  <!-- end city selection -->
+    <!-- end city selection -->
 
-  <!-- city -->
-  <div id="city-selected" class="span6">
-    <div class="row-fluid">
-      <div class="span6">
-        <img width="380" height="220" src="@routes.Assets.at("images/"+cityCode+".png")"/>
-      </div>
-
-      <div class="span6 weather-items">
-        <div class="row-fluid">
-          <h1>New York</h1>
-
-          <div class="span6 weather-img">
-            <img src="@routes.Assets.at("images/"+weatherImg+".png")"/>
-          </div>
-
-          <div class="span6">
-            <h2>
-              @temp &deg;F
-            </h2>
-            <h4>
-              @weather
-            <h4>
-          </div>
-        </div>
-      </div>
+    <!-- city -->
+    <div id="city-selected">
+      <b><span id="city-placeholder"></span></b>
+      &nbsp;<a id="activate-city-selection" href="#"><i class="icon-edit"></i></a>
+      <img style="width:20px" src="@routes.Assets.at("images/"+weatherImg+".png")"/>
+      @temp &deg;F - @weather
     </div>
+    <!-- end city -->
   </div>
-  <!-- end city -->
 
   <!-- tags -->
-  <div id="content-tags" class="span5">
+  <div id="content-tags" class="span6">
     <div class="tag arrow-left">Winter<a href="javascript:void(0);" class="remove-tag">x</a></div>
     <div class="tag arrow-left">Cardigan<a href="javascript:void(0);" class="remove-tag">x</a></div>
     <div class="tag arrow-left">Cozy<a href="javascript:void(0);" class="remove-tag">x</a></div>
@@ -72,14 +45,8 @@
   <!-- end tags -->
 </div>
 
-<div class="row-fluid">
-  <ul class="nav nav-list">
-    <h3><center>Shop styles based on Hearst articles.</center></h3>
-    <li class="divider"></li>
-  </ul>
-</div>
-
 <div id="container">
+  <!-- <div id="loader">TEST</div> -->
   @for(item <- hearstItems) {
     <div class="box">
       <!-- Button to trigger modal -->
@@ -87,7 +54,7 @@
         <img src=@item.getDefaultUrl() alt=""/>
 
         <div class="social-bar item-overlay">
-          <a href="#">
+          <a href="#tag-@item.getId()" role="button" data-toggle="modal">
             <div class="social-tag">TAG<br/>a Friend</div>
           </a>
           <a href="#">
@@ -99,37 +66,82 @@
             My Product
           </div>
           <div class="desc">
-            my description
+            @item.getKeywords
           </div>
         </div>
       </a>
 
-      <!-- Modal -->
+      <!-- Tag Modal -->
+      <div id="tag-@item.getId()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        Tag a friend
+      </div>
+      <!-- EndTag Modal -->
+
       <div id="@item.getId()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-          <h3 id="myModalLabel">Suggested Products</h3>
-          featured by <a href="www.gilt.com">gilt</a>
-        </div>
-        <div class="modal-body">
-          <ul class="thumbnails">
-          @if(item.giltProducts.size>0) {
-            @for(product <- item.giltProducts) {
-                <div class="span4">
-                  <a href="@product.buyUrl"><img src="@product.imageUrl"/></a>
-                </div>
-              }
-          }else{
-            <div class="span8">
-               <p>
-                  No products found.
-               </p>
-            </div>
-           }
-          </ul>
-        </div>
-      </div>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3>Article Name</h3>
+            <h3><span style="font-size:small; color: #47a6c6">Submitted by</span></h3>
+          </div>
+          <div class="modal-body">
+            <div class="row-fluid">
+              <!-- CONTENT -->
+              <div class="span9 modal-main-content">
 
+                <!-- INITIAL CONTENT -->
+                <div class="modal-show-content">
+                  <img src=@item.getDefaultUrl() alt=""/>
+                  <div>comments</div>
+                </div>
+                <!-- END INITIAL CONTENT -->
+
+                <!-- READ CONTENT -->
+                <div class="modal-show-read">
+                  <h1>Article Name</h1>
+                  <h2>Article Submitted By Gilt</h2>
+                  <div>article</div>
+                  <div>comments</div>
+                </div>
+                <!-- END READ CONTENT -->
+
+                <!-- BUY CONTENT -->
+                <div class="modal-show-buy">
+                  <h1>Suggested Products</h1>
+                  <h2>From Gilt</h2>
+
+                  @if(item.giltProducts.size>0) {
+                    @for(product <- item.giltProducts) {
+                      <a href="@product.buyUrl"><img src="@product.imageUrl"/></a>
+                    }
+                  }else{
+                    No products found.
+                  }
+                </div>
+                <!-- END BUY CONTENT -->
+
+                <!-- SHARE CONTENT -->
+                <div class="modal-show-share">
+                  <div>twitter share</div>
+                  <div>facebook share</div>
+                </div>
+                <!-- END SHARE CONTENT -->
+              </div>
+              <!-- END CONTENT -->
+
+              <!-- BUTTONS -->
+              <div class="modal-buttons-container span3">
+                  <div class="modal-buttons modal-button-read">READ</div>
+                  <div class="modal-buttons modal-button-buy">
+                    BUY<br>
+                    <span class="modal-subtitle">(similar items)</span>
+                  </div>
+                  <div class="modal-buttons modal-button-share">SHARE</div>
+                  <img style="width: 125x;" src="@routes.Assets.at("images/social-share.png")"/>
+              </div>
+              <!-- END BUTTONS -->
+            </div>
+          </div>
+      </div>
     </div>
   }
 </div>

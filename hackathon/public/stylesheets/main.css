@@ -1,8 +1,13 @@
 html, body {
     background-color: #eee;
 }
+
 body {
     padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .container > footer p {
@@ -121,6 +126,7 @@ body {
 }
 
 #container {
+  position:relative;
   background: #FFF;
   padding: 5px;
   margin-bottom: 20px;
@@ -156,7 +162,8 @@ body {
   height: 50px;
   padding: 0 5px;
 }
-.social-bar a, a:hover {
+.social-bar a,
+.social-bar a:hover {
   color: white;
   font-size: 1.5em;
   font-weight: bold;
@@ -209,4 +216,78 @@ body {
 #auth-buttons {
   text-align: right;
   margin-bottom: 20px;
+}
+
+
+.modal-buttons {
+  font-weight: bold;
+  font-size:1.5em;
+  color:white;
+  padding:10px;
+  margin-bottom:10px;
+  opacity: 1;
+  width: 105px;
+  text-align: center;
+}
+
+.modal-buttons:hover {
+  opacity: 0.7;
+}
+
+.modal-subtitle {
+  font-size: 11px;
+  font-weight: normal;
+}
+
+.modal-button-read {
+  background-color: purple;
+}
+
+.modal-button-buy {
+  background-color: blue;
+}
+
+.modal-button-share {
+  background-color: green;
+}
+
+.modal-show-read,
+.modal-show-buy,
+.modal-show-share {
+  display: none;
+}
+
+#loader {
+    position:absolute;
+    width:100%;
+    height:100%;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    background-color: red;
+    z-index:1000;
+}
+
+.modal-backdrop, .modal-backdrop.fade.in {
+  opacity: .9;
+  background-color: #fff;
+  filter: alpha(opacity=90);
+}
+
+.modal {
+  -moz-box-shadow: rgba(0,0,0,0.1) 0 0 0 10px;
+  -webkit-box-shadow: rgba(0,0,0,0.1) 0 0 0 10px;
+  box-shadow: rgba(0,0,0,0.1) 0 0 0 10px;
+
+  -webkit-border-radius: 0;
+   -moz-border-radius: 0;
+        border-radius: 0;
+}
+
+.modal-header h3 {
+  font-family: Georgia, serif;
+}
+
+.modal-footer {
+  text-align: left;
 }

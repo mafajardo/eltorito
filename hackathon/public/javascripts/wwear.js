@@ -57,18 +57,31 @@ function item_hover_listener(){
 }
 
 /* City selection listener */
+var cities = {
+  "NY": "New York",
+  "HI": "Hawaii",
+  "LO": "London"
+}
 function city_selection_listener(){
-  $("#city-selection-select").change(function(){
-    $("#city-selection").animate({
-      "opacity":"0",
-      "display":"none",
-      "height": "206px"
-    },3000,
-    function (){
-      $("#city-selected").fadeIn(3000);
-    });
+  $("#city-selection-select").on("change",function(){
+    var val = $("#city-selection-select").val();
 
-    // filter_and_reload_items();
+    if (val == ""){
+      return;
+    }
+
+    $("#city-placeholder").html(cities[val]);
+
+    $("#city-selection").fadeOut(function(){
+        $("#city-selected").fadeIn();
+    });
+  });
+
+  $("#activate-city-selection").click(function(){
+    $("#city-selection-select").val("");
+    $("#city-selected").fadeOut(function(){
+      $("#city-selection").fadeIn();
+    });
   });
 }
 
@@ -82,17 +95,35 @@ function tag_listener() {
     });
   });
 }
+
 /* Item refresher */
 function filter_and_reload_items() {
   var container = $("#container");
   container.html(shuffle($("#container > div")));
   container.masonry("reload");
+  setup_listeners();
+}
+
+/* Modal button listener */
+function modal_buttons_listener() {
+  $(".modal-buttons").on("click",function(){
+    var b = $(this);
+    var type = b.attr("class").match(/modal-button-(.*)\b/)[1];
+    var row = b.parents(".row-fluid");
+
+    $(".modal-main-content > div",row).hide();
+    $(".modal-main-content > .modal-show-" + type,row).show();
+  });
+}
+
+function setup_listeners() {
   item_hover_listener();
+  city_selection_listener();
+  tag_listener();
+  modal_buttons_listener();
 }
 
 /* Document Ready */
 $(document).ready(function(){
-  item_hover_listener();
-  city_selection_listener();
-  tag_listener();
+  setup_listeners();
 });
