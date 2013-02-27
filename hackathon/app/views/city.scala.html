@@ -72,8 +72,13 @@
       </a>
 
       <!-- Tag Modal -->
-      <div id="tag-@item.getId()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        Tag a friend
+      <div id="tag-@item.getId()" class="modal hide fade modal-tag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <h1>Tag a friend</h1>
+        <p>Tag a Facebook friend to share this article</p>
+        <input type="text" value="@@"/>
+        <div style="width:100%; text-align:center">
+          <a class="btn">TAG</a>
+        </div>
       </div>
       <!-- EndTag Modal -->
 
@@ -89,14 +94,13 @@
               <div class="span9 modal-main-content">
 
                 <!-- INITIAL CONTENT -->
-                <div class="modal-show-content">
+                <div class="modal-section modal-show-content">
                   <img src=@item.getDefaultUrl() alt=""/>
-                  <div>comments</div>
                 </div>
                 <!-- END INITIAL CONTENT -->
 
                 <!-- READ CONTENT -->
-                <div class="modal-show-read">
+                <div class="modal-section modal-show-read">
                   <h1>Article Name</h1>
                   <h2>Article Submitted By Gilt</h2>
                   <div>article</div>
@@ -105,7 +109,7 @@
                 <!-- END READ CONTENT -->
 
                 <!-- BUY CONTENT -->
-                <div class="modal-show-buy">
+                <div class="modal-section modal-show-buy">
                   <h1>Suggested Products</h1>
                   <h2>From Gilt</h2>
 
@@ -125,18 +129,49 @@
                   <div>facebook share</div>
                 </div>
                 <!-- END SHARE CONTENT -->
+
+                <div class="comments">
+                  <hr/>
+                  <input type="text" value="Leave a comment"/>
+                  <br/>
+
+                  <div class="comment">
+                    <div class="comment-header">
+                      <span class="comment-author">James</span>&nbsp;-&nbsp;
+                      <span class="comment-date">two hours ago</span>
+                    </div>
+                    <div class="comment-content">I love this item!</div>
+                  </div>
+                  <div class="comment">
+                    <div class="comment-header">
+                      <span class="comment-author">James</span>&nbsp;-&nbsp;
+                      <span class="comment-date">two hours ago</span>
+                    </div>
+                    <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam recusandae tempore nulla ipsam quaerat tempora quas consequuntur temporibus non nam neque praesentium vero vel sapiente ratione repudiandae nostrum sed nobis!</div>
+                  </div>
+                  <div class="comment">
+                    <div class="comment-header">
+                      <span class="comment-author">James</span>&nbsp;-&nbsp;
+                      <span class="comment-date">two hours ago</span>
+                    </div>
+                    <div class="comment-content">lorem</div>
+                  </div>
+                </div>
+
               </div>
               <!-- END CONTENT -->
 
               <!-- BUTTONS -->
               <div class="modal-buttons-container span3">
-                  <div class="modal-buttons modal-button-read">READ</div>
-                  <div class="modal-buttons modal-button-buy">
+                  <a class="btn btn-read modal-buttons modal-button-read">READ</a>
+
+                  <a class="btn btn-buy modal-buttons modal-button-buy">
                     BUY<br>
                     <span class="modal-subtitle">(similar items)</span>
-                  </div>
-                  <div class="modal-buttons modal-button-share">SHARE</div>
-                  <img style="width: 125x;" src="@routes.Assets.at("images/social-share.png")"/>
+                  </a>
+
+                  <a class="btn btn-facebook modal-buttons">Share on <i class="icon-facebook"></i></a>
+                  <a class="btn btn-twitter modal-buttons">Share on <i class="icon-twitter"></i></a>
               </div>
               <!-- END BUTTONS -->
             </div>

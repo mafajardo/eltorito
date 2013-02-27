@@ -111,7 +111,7 @@ function modal_buttons_listener() {
     var type = b.attr("class").match(/modal-button-(.*)\b/)[1];
     var row = b.parents(".row-fluid");
 
-    $(".modal-main-content > div",row).hide();
+    $(".modal-main-content > .modal-section",row).hide();
     $(".modal-main-content > .modal-show-" + type,row).show();
   });
 }
