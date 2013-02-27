@@ -91,9 +91,13 @@ public class Application extends Controller {
         } catch (ClassNotFoundException e) {
         	System.out.print("########## ERROR#");
         }
+
+        while (items.size() > 50)
+            items.remove(0);
+
         return items;
     }
-	
+
 	public static void saveHI(List<HearstItem> products, String code){
 		try {
 	        FileOutputStream fos = new FileOutputStream(new File("HearstItem" + code));
